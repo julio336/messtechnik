@@ -22,9 +22,10 @@ group :assets do
 end
 
 gem 'bootstrap-sass'
-group :development do
-  gem 'rails_layout'
+group :development, :test do
   gem 'sqlite3', '1.3.5'
+  gem 'rspec-rails', '2.11.0'
+  gem 'rails_layout'
 end
 
 gem 'devise'
