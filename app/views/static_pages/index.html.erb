@@ -1,0 +1,24 @@
+<% if user_signed_in? %>
+	<div class="container">
+		<% if current_user.devices.any? %>
+			<%= current_user.devices %>
+		<% else %>
+			<h3>No tienes equipos asignados</h3>
+		<% end %>
+		<p><%= link_to 'Ver inventario', devices_path %>
+	</div>
+<% else %>
+
+	<div class="jumbotron">
+		<div class="container">
+			<h1>Inventario de calibraciones</h1>
+			<p>Administra las calibraciones de tus equipos.</p>
+			<div class="col-md-4">
+				<p><%= link_to 'Regístrate', new_user_registration_path, class: "btn btn-primary" %></p>
+			</div>
+			<div class="col-md-4">
+				<p><%= link_to 'Iniciar Sesión', new_user_session_path, class: "btn btn-primary" %></p>
+			</div>
+		</div>
+	</div>
+<% end %>

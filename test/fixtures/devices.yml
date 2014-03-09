@@ -1,0 +1,23 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/Fixtures.html
+
+one:
+  folio: MyString
+  description: MyString
+  brand: MyString
+  model: MyString
+  calibration_date: MyString
+  next_calibration: MyString
+  deflection: MyString
+  responsible: MyString
+  user_id: 1
+
+two:
+  folio: MyString
+  description: MyString
+  brand: MyString
+  model: MyString
+  calibration_date: MyString
+  next_calibration: MyString
+  deflection: MyString
+  responsible: MyString
+  user_id: 1
