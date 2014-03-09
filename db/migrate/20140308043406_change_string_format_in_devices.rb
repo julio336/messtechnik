@@ -1,6 +1,10 @@
 class ChangeStringFormatInDevices < ActiveRecord::Migration
   def up
-   change_column :devices, :calibration_date, :date
+  	connection.execute(%q{
+    	alter table devices
+    	alter column calibration_date
+    	type date using cast(calibration_date as date)
+  	})
   end
 
   def down
