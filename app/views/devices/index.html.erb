@@ -1,5 +1,5 @@
 <div class="container">
-    <h1>Listado de equipos</h1>
+    <h1>Listado de dispositivos</h1>
 
     <table class="table table-striped">
       <tr>
@@ -23,8 +23,8 @@
         <td><%= device.description %></td>
         <td><%= device.brand %></td>
         <td><%= device.model %></td>
-        <td><%= device.calibration_date.to_date %></td>
-        <td><%= device.next_calibration.to_date %></td>
+        <td><%= device.calibration_date %></td>
+        <td><%= device.next_calibration %></td>
         <td><%= device.deflection %></td>
         <td><%= device.responsible %></td>
         <td><%= device.user_id %></td>
@@ -37,5 +37,5 @@
 
     <br />
 
-    <%= link_to 'New Device', new_device_path %>
+    <%= link_to 'Nuevo dispositvo', new_device_path, class: "btn btn-primary btn-lg" %>
  </div>
