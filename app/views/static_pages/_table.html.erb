@@ -1,6 +1,4 @@
-<div class="row">
-    <div class="col-md-12">
-    <h1>Listado de dispositivos</h1>
+<h1>Listado de dispositivos</h1>
 
     <table class="table table-striped">
       <tr>
@@ -20,7 +18,8 @@
         <th></th>
         <th></th>
       </tr>
-      <% @devices.each do |device| %>
+
+    <% @devices.each do |device| %>
         <% case device.status %>
             <% when "NOK" %>
               <tr class="danger">
@@ -37,10 +36,8 @@
                 <td><%= device.user_id %></td>
             <% end %>
                 <td><%= link_to 'Ver detalles', device %></td>
-            <% if current_user.id == 1 || current_user.id == device.user_id %>
                 <td><%= link_to 'Editar', edit_device_path(device) %></td>
                 <td><%= link_to 'Borrar', device, method: :delete, data: { confirm: 'Are you sure?' } %></td>
-            <% end %>
               </tr>
             <% when "Hasta su uso" %>
                 <tr class="info">
@@ -57,10 +54,8 @@
                     <td><%= device.user_id %></td>
                 <% end %>
                     <td><%= link_to 'Ver detalles', device %></td>
-                <% if current_user.id == 1 || current_user.id == device.user_id %>
                     <td><%= link_to 'Editar', edit_device_path(device) %></td>
                     <td><%= link_to 'Borrar', device, method: :delete, data: { confirm: 'Are you sure?' } %></td>
-                <% end %>
                   </tr>
             <% else %>
                 <tr>
@@ -77,18 +72,17 @@
                     <td><%= device.user_id %></td>
                 <% end %>
                     <td><%= link_to 'Ver detalles', device %></td>
-                <% if current_user.id == 1 || current_user.id == device.user_id %>
                     <td><%= link_to 'Editar', edit_device_path(device) %></td>
-                    <td><%= link_to 'Borrar', device, method: :delete, data: { confirm: 'Are you sure?' } %>
-                    </td>
-                <% end %>
+                    <td><%= link_to 'Borrar', device, method: :delete, data: { confirm: 'Are you sure?' } %></td>
                   </tr>
         <% end %>
     <% end %>
     </table>
 
     <br />
-
-    <%= link_to 'Nuevo dispositvo', new_device_path, class: "btn btn-primary btn-lg" %>
+    <div class="col-md-3">
+        <%= link_to 'Ver inventario', devices_path, class: "btn btn-primary btn-lg" %>
     </div>
- </div>
+    <div class="col-md-3">
+        <%= link_to 'Nuevo dispositvo', new_device_path, class: "btn btn-primary btn-lg" %>
+    </div>

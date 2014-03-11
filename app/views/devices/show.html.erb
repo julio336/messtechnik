@@ -1,4 +1,4 @@
-<p id="notice"><%= notice %></p>
+<div class="container"><p id="notice"><%= notice %></p>
 
 <p>
   <b>Folio:</b>
@@ -6,45 +6,50 @@
 </p>
 
 <p>
-  <b>Description:</b>
+  <b>Descripción:</b>
   <%= @device.description %>
 </p>
 
 <p>
-  <b>Brand:</b>
+  <b>Marca:</b>
   <%= @device.brand %>
 </p>
 
 <p>
-  <b>Model:</b>
+  <b>Modelo:</b>
   <%= @device.model %>
 </p>
 
 <p>
-  <b>Calibration date:</b>
+  <b>Fecha de última calibración:</b>
   <%= @device.calibration_date %>
 </p>
 
 <p>
-  <b>Next calibration:</b>
+  <b>Fecha de próxima calibración:</b>
   <%= @device.next_calibration %>
 </p>
 
 <p>
-  <b>Deflection:</b>
+  <b>Observaciones:</b>
   <%= @device.deflection %>
 </p>
 
 <p>
-  <b>Responsible:</b>
+  <b>Responsable:</b>
   <%= @device.responsible %>
 </p>
-
 <p>
-  <b>User:</b>
-  <%= @device.user_id %>
+  <b>Status de calibración:</b>
+  <%= @device.status %>
 </p>
-
+<% if current_user.id == 1 %>
+  <p>
+    <b>User:</b>
+    <%= @device.user_id %>
+  </p>
+<% end %>
 
 <%= link_to 'Edit', edit_device_path(@device) %> |
 <%= link_to 'Back', devices_path %>
+</div>

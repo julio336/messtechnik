@@ -1,52 +1,52 @@
 <%= form_for(@device) do |f| %>
-  <% if @device.errors.any? %>
-    <div id="error_explanation">
-      <h2><%= pluralize(@device.errors.count, "error") %> prohibited this device from being saved:</h2>
-
-      <ul>
-      <% @device.errors.full_messages.each do |msg| %>
-        <li><%= msg %></li>
-      <% end %>
-      </ul>
-    </div>
-  <% end %>
 
   <div class="field">
     <%= f.label :folio %><br />
     <%= f.text_field :folio %>
   </div>
   <div class="field">
-    <%= f.label :description %><br />
+    <%= f.label :description, "Descripción" %><br />
     <%= f.text_field :description %>
   </div>
   <div class="field">
-    <%= f.label :brand %><br />
+    <%= f.label :brand, "Marca" %><br />
     <%= f.text_field :brand %>
   </div>
   <div class="field">
-    <%= f.label :model %><br />
+    <%= f.label :model, "Modelo" %><br />
     <%= f.text_field :model %>
   </div>
   <div class="field">
-    <%= f.label :calibration_date %><br />
+    <%= f.label :calibration_date, "Fecha de última calibración" %><br />
     <%= f.date_select :calibration_date, :start_year => 2000, :end_year => 2020 %>
   </div>
   <div class="field">
-    <%= f.label :next_calibration %><br />
+    <%= f.label :next_calibration, "Fecha de próxima calibración" %><br />
     <%= f.date_select :next_calibration, :start_year => 2000, :end_year => 2020 %>
   </div>
   <div class="field">
-    <%= f.label :deflection %><br />
+    <%= f.label :deflection, "Observaciones" %><br />
     <%= f.text_field :deflection %>
   </div>
   <div class="field">
-    <%= f.label :responsible %><br />
-    <%= f.text_field :responsible %>
+    <%= f.label :responsible, "Responsable" %><br />
+    <%= f.select(:responsible, User.all.collect {|p| [ p.username, p.username ]}, 
+     :prompt => "Please select") %>
   </div>
   <div class="field">
-    <%= f.label :user_id %><br />
-    <%= f.number_field :user_id %>
+    <%= f.label :status, "Status del calibración" %><br/>
+    <%= f.select(:status, [['OK', 'OK'],
+                                  ['NOK', 'NOK'],
+                                  ['Dañado', 'Dañado'],
+                                  ['Hasta su uso', 'Hasta su uso']
+                                 ],{ :prompt => "Please select"}) %>
   </div>
+  <% if current_user.id == 1 %>
+    <div class="field">
+      <%= f.label :user_id %><br />
+      <%= f.number_field :user_id %>
+    </div>
+  <% end %>
   <div class="actions">
     <%= f.submit %>
   </div>
