@@ -4,4 +4,5 @@ class Device < ActiveRecord::Base
   validates_presence_of :brand, :calibration_date, :deflection, :description, :folio, :model, :next_calibration, :responsible, :status
 
   belongs_to :user
+
 end

@@ -1,18 +1,28 @@
 <div class="row">
     <div class="col-md-12">
     <h1>Listado de dispositivos</h1>
-
+    <div class="row">
+        <%= form_for @search do |f| %>
+            <div class="col-md-2">
+                    <%= f.text_field :folio_or_description_or_brand_or_model_or_deflection_or_responsible_or_status_contains, size: '27' %>
+            </div>
+            <div class="col-md-2">
+                <%= f.submit "Buscar", class: "btn btn-default" %><br>
+            </div>
+        <% end %>
+        <br>
+    </div>
     <table class="table table-striped">
       <tr>
-        <th>Inventario</th>
-        <th>Descripción</th>
-        <th>Marca</th>
-        <th>Modelo</th>
-        <th>Última calibración</th>
-        <th>Próxima calibración</th>
-        <th>Observaciones</th>
-        <th>Responsable</th>
-        <th>Status</th>
+        <th><%= sortable "folio", "Inventario" %></th>
+        <th><%= sortable "description", "Descripción" %></th>
+        <th><%= sortable "brand", "Marca" %></th>
+        <th><%= sortable "model", "Modelo" %></th>
+        <th><%= sortable "calibration_date", "Última calibración" %></th>
+        <th><%= sortable "next_calibration", "Próxima calibración" %></th>
+        <th><%= sortable "deflection", "Observaciones" %></th>
+        <th><%= sortable "responsible", "Responsable" %></th>
+        <th><%= sortable "status", "Status" %></th>
      <% if current_user.id == 1 %>   
         <th>User</th>
      <% end %>

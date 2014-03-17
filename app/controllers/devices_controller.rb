@@ -2,9 +2,11 @@ class DevicesController < ApplicationController
   # GET /devices
   # GET /devices.json
   before_filter :authenticate_user!, except: [:index, :show]
+  helper_method :sort_column, :sort_direction
   def index
-    @devices = Device.all
-
+    @search = Device.search(params[:search])
+    @devices = @search.order(sort_column + " " + sort_direction)
+  #  @devices = Device.
     respond_to do |format|
       format.html # index.html.erb
       format.json { render json: @devices }
@@ -80,5 +82,13 @@ class DevicesController < ApplicationController
       format.html { redirect_to devices_url }
       format.json { head :no_content }
     end
+  end
+
+  private
+  def sort_column
+    Device.column_names.include?(params[:sort]) ? params[:sort] : "folio"
+  end
+  def sort_direction
+    %w[asc desc].include?(params[:direction]) ? params[:direction] : "asc"
   end
 end

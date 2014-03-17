@@ -2,6 +2,7 @@
 <ul class="nav navbar-nav navbar-right">
 	<% if user_signed_in? %>
 		<li ><%= link_to 'Inicio', root_path %></li>
+        <li ><%= link_to 'Inventario', devices_path %></li>
 		<li class="dropdown">
           <a href="#" class="dropdown-toggle" data-toggle="dropdown">Sesion de <%= current_user.username %> <b class="caret"></b></a>
           <ul class="dropdown-menu">
@@ -22,6 +23,6 @@ $(document).ready(function(){
     }, function() {
         $(this).find('.dropdown-menu').first().stop(true, true).delay(100).slideUp()
     });
-n})
+})
 
 </script>
