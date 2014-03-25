@@ -5,4 +5,8 @@ class Device < ActiveRecord::Base
 
   belongs_to :user
 
+  def nok(user)
+  	user.devices.where("status == ?", "NOK")
+  end
+ 
 end

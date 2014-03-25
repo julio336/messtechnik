@@ -1,6 +1,54 @@
-<h1>Tus equipos asignados</h1>
+   <!-- <div class="row">
+        <%= form_for @search do |f| %>
+            <div class="col-md-2">
+                    <%= f.text_field :folio_or_description_or_brand_or_model_or_deflection_or_responsible_or_status_contains, size: '27' %>
+            </div>
+            <div class="col-md-2">
+                <%= f.submit "Buscar", class: "btn btn-default" %><br>
+            </div>
+        <% end %>
+        <br>
+    </div> -->
+    <div class="row">
+        <div class="col-md-6">
+            <table class="table table-striped">
+                <h3>Equipos fuera de calibración</h3>
+                <tr>
+                    <th>Inventario</th>
+                    <th>Descripción</th>
+                    <th>Status</th>
 
+                </tr>
+                <% @devices_nok.each do |device| %>
+                    <tr class="danger">
+                        <td><%= device.folio %></td>
+                        <td><%= device.description %></td>
+                        <td><%= device.status %></td>
+                    </tr>
+                <% end %>
+            </table>
+        </div>
+        <div class="col-md-6">
+            <table class="table table-striped">
+                <h3>Calibración por vencer</h3>
+                 <tr>
+                    <th>Inventario</th>
+                    <th>Descripción</th>
+                    <th>Status</th>
+                </tr>
+                <% @devices_next.each do |device| %>
+                    <tr>
+                        <td><%= device.folio %></td>
+                        <td><%= device.description %></td>
+                        <td><%= device.status %></td>
+                    </tr>
+                <% end %>
+
+            </table>
+        </div>
+    </div>
     <table class="table table-striped">
+      <h3>Tus equipos asignados</h3>
       <tr>
         <th>Inventario</th>
         <th>Descripción</th>
