@@ -3,7 +3,7 @@ class StaticPagesController < ApplicationController
   	if user_signed_in?
   		@search = current_user.devices.search(params[:search])
     	@devices = @search.order(sort_column + " " + sort_direction)
-    	@devices_nok = current_user.devices.where('status = "NOK"')
+    	@devices_nok = current_user.devices.where('status == "NOK"')
       @devices_next = next_calibration(current_user.devices)
   	end
   end
