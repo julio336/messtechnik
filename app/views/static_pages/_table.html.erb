@@ -34,12 +34,14 @@
                  <tr>
                     <th>Inventario</th>
                     <th>Descripción</th>
+                    <th>Próxima calibración</th>
                     <th>Status</th>
                 </tr>
                 <% @devices_next.each do |device| %>
                     <tr>
                         <td><%= device.folio %></td>
                         <td><%= device.description %></td>
+                        <td><%= device.next_calibration %></td>
                         <td><%= device.status %></td>
                     </tr>
                 <% end %>
