@@ -12,7 +12,7 @@
 # It's strongly recommended to check this file into your version control system.
 
 ActiveRecord::Schema.define(:version => 20140311045549) do
- 
+
   create_table "devices", :force => true do |t|
     t.string   "folio"
     t.string   "description"
