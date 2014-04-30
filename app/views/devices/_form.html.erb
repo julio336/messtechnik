@@ -1,53 +1,71 @@
 <%= form_for(@device) do |f| %>
-
-  <div class="field">
-    <%= f.label :folio %><br />
-    <%= f.text_field :folio %>
-  </div>
-  <div class="field">
-    <%= f.label :description, "Descripción" %><br />
-    <%= f.text_field :description %>
-  </div>
-  <div class="field">
-    <%= f.label :brand, "Marca" %><br />
-    <%= f.text_field :brand %>
-  </div>
-  <div class="field">
-    <%= f.label :model, "Modelo" %><br />
-    <%= f.text_field :model %>
-  </div>
-  <div class="field">
-    <%= f.label :calibration_date, "Fecha de última calibración" %><br />
-    <%= f.date_select :calibration_date, :start_year => 2000, :end_year => 2020 %>
-  </div>
-  <div class="field">
-    <%= f.label :next_calibration, "Fecha de próxima calibración" %><br />
-    <%= f.date_select :next_calibration, :start_year => 2000, :end_year => 2020 %>
-  </div>
-  <div class="field">
-    <%= f.label :deflection, "Observaciones" %><br />
-    <%= f.text_field :deflection %>
-  </div>
-  <div class="field">
-    <%= f.label :responsible, "Responsable" %><br />
-    <%= f.select(:responsible, User.all.collect {|p| [ p.username, p.username ]}, 
-     :prompt => "Please select") %>
-  </div>
-  <div class="field">
-    <%= f.label :status, "Status del calibración" %><br/>
-    <%= f.select(:status, [['OK', 'OK'],
-                                  ['NOK', 'NOK'],
-                                  ['Dañado', 'Dañado'],
-                                  ['Hasta su uso', 'Hasta su uso']
-                                 ],{ :prompt => "Please select"}) %>
-  </div>
-  <% if current_user.id == 1 %>
-    <div class="field">
-      <%= f.label :user_id %><br />
-      <%= f.number_field :user_id %>
+<div class="row">
+  <div class="col-md-12">
+    <div class="col-md-4">
+      <div class="form-group">
+        <%= f.label :folio %><br />
+        <%= f.text_field :folio %>
+      </div>
+      <div class="form-group">
+        <%= f.label :description, "Descripción" %><br />
+        <%= f.text_field :description %>
+      </div>
+      <div class="form-group">
+        <%= f.label :brand, "Marca" %><br />
+        <%= f.text_field :brand %>
+      </div>
+      <div class="form-group">
+        <%= f.label :model, "Modelo" %><br />
+        <%= f.text_field :model %>
+      </div>
     </div>
-  <% end %>
-  <div class="actions">
-    <%= f.submit %>
+    <div class="col-md-6">
+      <div class="form-group">
+        <%= f.label :calibration_date, "Fecha de última calibración" %><br />
+        <%= f.date_select :calibration_date, :start_year => 2000, :end_year => 2020 %>
+      </div>
+      <div class="form-group">
+        <%= f.label :next_calibration, "Fecha de próxima calibración" %><br />
+        <%= f.date_select :next_calibration, :start_year => 2000, :end_year => 2020 %>
+      </div>
+      <div class="form-group">
+        <%= f.label :deflection, "Observaciones" %><br />
+        <%= f.text_area :deflection, cols: "40", rows: "5" %>
+      </div>
+      <div class="form-group">
+        <%= f.label :responsible, "Responsable" %><br />
+        <%= f.select(:responsible, User.all.collect {|p| [ p.username, p.username ]}, 
+         :prompt => "Please select") %>
+      </div>
+      <div class="form-group">
+        <%= f.label :status, "Status del calibración" %><br/>
+        <%= f.select(:status, [['OK', 'OK'],
+                                      ['NOK', 'NOK'],
+                                      ['Dañado', 'Dañado'],
+                                      ['Hasta su uso', 'Hasta su uso']
+                                     ],{ :prompt => "Please select"}) %>
+      </div>
+      <% if current_user.id == 1 %>
+        <div class="field">
+          <%= f.label :user_id %><br />
+          <%= f.number_field :user_id %>
+        </div>
+      <% else %>
+        <div style="display:none">
+          <%= f.number_field :user_id, :value => "#{current_user.id}" %>
+        </div>
+      <% end %>
+      <br>
+      <br>
+      <div class="col-md-2">
+        <div class="actions">
+          <%= f.submit "Crear", class: "btn btn-success btn-lg" %>
+        </div>
+      </div>
+      <div class="col-md-1">
+        <%= link_to 'Cancelar', devices_path, class: "btn btn-danger btn-lg" %>
+      </div>
+    </div>
   </div>
+</div>
 <% end %>
