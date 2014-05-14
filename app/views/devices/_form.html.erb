@@ -1,4 +1,15 @@
 <%= form_for(@device) do |f| %>
+<% if @device.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@device.errors.count, "error") %> prohibited this device from being saved:</h2>
+
+      <ul>
+      <% @device.errors.full_messages.each do |msg| %>
+        <li><%= msg %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
 <div class="row">
   <div class="col-md-12">
     <div class="col-md-4">
@@ -18,8 +29,7 @@
         <%= f.label :model, "Modelo" %><br />
         <%= f.text_field :model %>
       </div>
-    </div>
-    <div class="col-md-6">
+   
       <div class="form-group">
         <%= f.label :calibration_date, "Fecha de última calibración" %><br />
         <%= f.date_select :calibration_date, :start_year => 2000, :end_year => 2020 %>
@@ -28,6 +38,8 @@
         <%= f.label :next_calibration, "Fecha de próxima calibración" %><br />
         <%= f.date_select :next_calibration, :start_year => 2000, :end_year => 2020 %>
       </div>
+    </div>
+    <div class="col-md-6">
       <div class="form-group">
         <%= f.label :deflection, "Observaciones" %><br />
         <%= f.text_area :deflection, cols: "40", rows: "5" %>
