@@ -17,6 +17,7 @@
                     <th>Inventario</th>
                     <th>Descripción</th>
                     <th>Status</th>
+                    <th></th>
 
                 </tr>
                 <% @devices_nok.each do |device| %>
@@ -24,6 +25,7 @@
                         <td><%= device.folio %></td>
                         <td><%= device.description %></td>
                         <td><%= device.status %></td>
+                        <td><%= link_to "Ver detalles", device %></td>
                     </tr>
                 <% end %>
             </table>

@@ -1,56 +1,81 @@
 <div class="container"><p id="notice"><%= notice %></p>
+  <div class="col-md-4">
+    <p>
+      <b>Folio:</b>
+      <%= @device.folio %>
+    </p>
 
-<p>
-  <b>Folio:</b>
-  <%= @device.folio %>
-</p>
+    <p>
+      <b>Descripción:</b>
+      <%= @device.description %>
+    </p>
 
-<p>
-  <b>Descripción:</b>
-  <%= @device.description %>
-</p>
+    <p>
+      <b>Marca:</b>
+      <%= @device.brand %>
+    </p>
 
-<p>
-  <b>Marca:</b>
-  <%= @device.brand %>
-</p>
+    <p>
+      <b>Modelo:</b>
+      <%= @device.model %>
+    </p>
 
-<p>
-  <b>Modelo:</b>
-  <%= @device.model %>
-</p>
+    <p>
+      <b>Fecha de última calibración:</b>
+      <%= @device.calibration_date %>
+    </p>
 
-<p>
-  <b>Fecha de última calibración:</b>
-  <%= @device.calibration_date %>
-</p>
+    <p>
+      <b>Fecha de próxima calibración:</b>
+      <%= @device.next_calibration %>
+    </p>
 
-<p>
-  <b>Fecha de próxima calibración:</b>
-  <%= @device.next_calibration %>
-</p>
+    <p>
+      <b>Observaciones:</b>
+      <%= @device.deflection %>
+    </p>
 
-<p>
-  <b>Observaciones:</b>
-  <%= @device.deflection %>
-</p>
+    <p>
+      <b>Responsable:</b>
+      <%= @device.responsible %>
+    </p>
 
-<p>
-  <b>Responsable:</b>
-  <%= @device.responsible %>
-</p>
-<p>
-  <b>Status de calibración:</b>
-  <%= @device.status %>
-</p>
-<% if current_user.id == 1 %>
-  <p>
-    <b>User:</b>
-    <%= @device.user_id %>
-  </p>
-<% end %>
-<% if current_user.id == @device.user_id || current_user.id == 1 %>
-  <%= link_to 'Editar', edit_device_path(@device) %> |
-<% end %>
-<%= link_to 'Regresar', devices_path %>
+    <% case @device.status %>
+      <% when "OK" %>
+      <p class="bg-success">
+        <b>Status de calibración:</b>
+        <%= @device.status %>
+      </p>
+      <% when "NOK" %>
+      <p class="bg-danger">
+        <b>Status de calibración:</b>
+        <%= @device.status %>
+      </p>
+      <% when "Dañado" %>
+      <p class="bg-warning">
+        <b>Status de calibración:</b>
+        <%= @device.status %>
+      </p>
+      <% when "Hasta su uso" %>
+      <p class="bg-info">
+        <b>Status de calibración:</b>
+        <%= @device.status %>
+      </p>
+      <% else %>
+      <p>
+        <b>Status de calibración:</b>
+        <%= @device.status %>
+      </p>
+    <% end %>
+    <% if current_user.id == 1 %>
+      <p>
+        <b>User:</b>
+        <%= @device.user_id %>
+      </p>
+    <% end %>
+    <% if current_user.id == @device.user_id || current_user.id == 1 %>
+      <%= link_to 'Actualizar', edit_device_path(@device) %> |
+    <% end %>
+    <%= link_to 'Regresar', devices_path %>
+  </div>
 </div>

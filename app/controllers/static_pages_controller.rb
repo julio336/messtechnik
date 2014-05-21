@@ -20,9 +20,8 @@ class StaticPagesController < ApplicationController
     device = []
     devices.each do |x|
       if Time.now-30.days > x.next_calibration
-        device << x
+        device.push(x)
       end
-      return device
     end 
   end  
 
