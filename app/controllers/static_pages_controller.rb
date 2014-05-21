@@ -19,7 +19,7 @@ class StaticPagesController < ApplicationController
   def next_calibration(devices)
     device = []
     devices.each do |x|
-      if Time.now-30.days > x.next_calibration
+      if Time.now-30.days < x.next_calibration
         device.push(x)
       end
     end 
