@@ -22,6 +22,7 @@ class StaticPagesController < ApplicationController
       if Time.now-30.days < x.next_calibration
         device.push(x)
       end
+      return device
     end 
   end  
 
