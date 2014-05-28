@@ -4,7 +4,7 @@ class StaticPagesController < ApplicationController
   		@search = current_user.devices.search(params[:search])
     	@devices = @search.order(sort_column + " " + sort_direction)
     	@devices_nok = current_user.devices.where(status: "NOK")
-      @devices_next = next_calibration(current_user.devices)
+      @devices_next = current_user.devices.all(:conditions => ["next_calibration >= ?", Time.now-30.days])
   	end
   end
 
@@ -16,13 +16,13 @@ class StaticPagesController < ApplicationController
     %w[asc desc].include?(params[:direction]) ? params[:direction] : "asc"
   end
 
-  def next_calibration(devices)
+  def next_calibration(user)
     device = []
-    logger.debug "#{devices}\n\n\n\n\n\n"
-    devices.each do |x|
-      if Time.now-30.days <= x.next_calibration && Time.now >= x.next_calibration
-        device << x
-        logger.debug "#{device}\n\n\n\n\n\n"
+    user.devices.each do |equipo|
+      logger.debug "#{equipo}\n\n\n\n\n\n"
+      if Time.now-30.days <= equipo.next_calibration && Time.now >= equipo.next_calibration
+        device << equipo
+        return device
       end
     end 
   end  

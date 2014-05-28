@@ -12,4 +12,15 @@ class User < ActiveRecord::Base
 
   has_many :devices, :dependent => :destroy
 
+  def next_calibration
+    device = []
+    self.devices.each do |equipo|
+      logger.debug "#{equipo}\n\n\n\n\n\n"
+      if Time.now-30.days <= equipo.next_calibration && Time.now >= equipo.next_calibration
+        device << equipo
+        return device
+      end
+    end 
+  end  
+
 end
