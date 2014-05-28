@@ -18,11 +18,12 @@ class StaticPagesController < ApplicationController
 
   def next_calibration(devices)
     device = []
+    logger.debug "#{devices}\n\n\n\n\n\n"
     devices.each do |x|
-      if Time.now-30.days <= x.next_calibration && Time.now > x.next_calibration
-        device.push(x)
+      if Time.now-30.days <= x.next_calibration && Time.now >= x.next_calibration
+        device << x
+        logger.debug "#{device}\n\n\n\n\n\n"
       end
-      return device
     end 
   end  
 
