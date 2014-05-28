@@ -109,6 +109,24 @@
                     <td><%= link_to 'Editar', edit_device_path(device) %></td>
                     <td><%= link_to 'Borrar', device, method: :delete, data: { confirm: 'Are you sure?' } %></td>
                   </tr>
+            <% when "OK" %>
+                <tr class="success">
+                    <td><%= device.folio %></td>
+                    <td><%= device.description %></td>
+                    <td><%= device.brand %></td>
+                    <td><%= device.model %></td>
+                    <td><%= device.calibration_date %></td>
+                    <td><%= device.next_calibration %></td>
+                    <td><%= device.deflection %></td>
+                    <td><%= device.responsible %></td>
+                    <td><%= device.status %></td>
+                <% if current_user.id == 1 %>   
+                    <td><%= device.user_id %></td>
+                <% end %>
+                    <td><%= link_to 'Ver detalles', device %></td>
+                    <td><%= link_to 'Editar', edit_device_path(device) %></td>
+                    <td><%= link_to 'Borrar', device, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+                  </tr>
             <% else %>
                 <tr>
                     <td><%= device.folio %></td>
