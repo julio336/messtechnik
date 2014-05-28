@@ -4,7 +4,10 @@ class StaticPagesController < ApplicationController
   		@search = current_user.devices.search(params[:search])
     	@devices = @search.order(sort_column + " " + sort_direction)
     	@devices_nok = current_user.devices.where(status: "NOK")
-      @devices_next = current_user.devices.all(:conditions => ["next_calibration >= ?", Time.now-30.days])
+      @devices_next = current_user.devices
+      @devices_next = @devices_next.where('next_calibration > ?', Time.now-30.days)
+      @devices_next = @devices_next.where('next_calibration < ?', Time.now)
+      #@devices_next = current_user.devices.all(:conditions => ["next_calibration >= ?", Time.now-30.days])
   	end
   end
 
