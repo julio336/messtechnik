@@ -18,7 +18,7 @@
                     <th>Descripción</th>
                     <th>Status</th>
                     <th></th>
-
+                    <th></th>
                 </tr>
                 <% @devices_nok.each do |device| %>
                     <tr class="danger">
@@ -26,6 +26,7 @@
                         <td><%= device.description %></td>
                         <td><%= device.status %></td>
                         <td><%= link_to "Ver detalles", device %></td>
+                        <td><%= link_to 'Editar', edit_device_path(device) %></td>
                     </tr>
                 <% end %>
             </table>

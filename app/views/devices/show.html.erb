@@ -76,6 +76,6 @@
     <% if current_user.id == @device.user_id || current_user.id == 1 %>
       <%= link_to 'Actualizar', edit_device_path(@device) %> |
     <% end %>
-    <%= link_to 'Regresar', devices_path %>
+    <%= link_to 'Regresar', :back %>
   </div>
 </div>
